@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'loc.zank'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.primefaces:primefaces:6.2'
+    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'commons-validator:commons-validator:1.6'
+    providedCompile 'javax.enterprise:cdi-api:2.0.SP1'
+    providedCompile 'org.jboss.spec.javax.ejb:jboss-ejb-api_3.2_spec:1.0.1.Final'
+    providedCompile 'org.jboss.spec.javax.faces:jboss-jsf-api_2.3_spec:2.3.5.SP1'
+}

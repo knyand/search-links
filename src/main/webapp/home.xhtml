@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Search the Links</title>
+</h:head>
+<h:body>
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
+              showHeader="false">
+        <p:graphicImage name="/images/ajaxloadingbar.gif"/>
+    </p:dialog>
+    <h:form id="formAddress">
+        <p:panel id="panelAddress" header="Анализируемая страница">
+            <p:messages id="msgs"/>
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="address" value="Адрес страницы:"/>
+                <p:inputText id="address" value="#{linkController.address}" label="Address">
+                    <f:validator validatorId="loc.zank.URLValidator"/>
+                </p:inputText>
+                <p:message for="address" display="icon"/>
+            </h:panelGrid>
+            <p:commandButton value="Анализировать" update="panelAddress formResult"
+                             action="#{linkController.analyzeLink}" icon="pi pi-check"/>
+        </p:panel>
+    </h:form>
+    <h:form id="formResult">
+        <p:panel id="panelResult" header="Обнаруженные ссылки" style="margin-top: 20px">
+            <p:dataTable var="link" value="#{linkController.links}">
+                <p:column headerText="№ п/п">
+                    <h:outputText value="#{linkController.links.indexOf(link) + 1}"/>
+                </p:column>
+                <p:column headerText="Имя ссылки">
+                    <h:outputText value="#{link.name}"/>
+                </p:column>
+                <p:column headerText="Адрес ссылки">
+                    <p:commandLink update="formAddress" action="#{linkController.setAddress(link.address)}">
+                        <h:outputText value="#{link.address}"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+    <h:form>
+        <p:commandButton value="Очистить" update="formResult" action="#{linkController.clearLinks}"
+                         style="margin-top: 20px"/>
+    </h:form>
+</h:body>
+</html>
