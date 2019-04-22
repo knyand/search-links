@@ -21,7 +21,7 @@ public class URLValidator implements Validator {
         UrlValidator urlValidator = new UrlValidator(schemes);
         if (!urlValidator.isValid(String.valueOf(value))) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Не верный адрес страницы", "Ошибка заполнения адреса страницы"));
+                    "Ошибка!", "Не верно заполнен адрес страницы."));
         }
     }
 }

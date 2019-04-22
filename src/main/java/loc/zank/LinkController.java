@@ -1,6 +1,8 @@
 package loc.zank;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
@@ -19,6 +21,9 @@ public class LinkController implements Serializable {
         try {
             links = linkService.findAllLinks(address);
         } catch (IOException e) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ошибка доступа!", "Страница не доступна.")
+            );
             e.printStackTrace();
         }
     }

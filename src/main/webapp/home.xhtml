@@ -16,7 +16,7 @@
     </p:dialog>
     <h:form id="formAddress">
         <p:panel id="panelAddress" header="Анализируемая страница">
-            <p:messages id="msgs"/>
+            <p:messages id="msgs" showDetail="true"/>
             <h:panelGrid columns="3" cellpadding="5">
                 <p:outputLabel for="address" value="Адрес страницы:"/>
                 <p:inputText id="address" value="#{linkController.address}" label="Address">
