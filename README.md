@@ -9,7 +9,8 @@
 ## Запуск
 
 Приложение тестировалось на сервере приложений WildFly-16.0.0.Final. Для запуска приложения в контейнере Docker:
-1. Запускаем сборку `docker build --tag=search-links .`
-2. Запускаем контейнер `docker run -it -p 8080:8080 search-links`
+1. Собираем проект `./gradlew build`
+2. Собираем образ docker `docker build --tag=search-links .`
+3. Запускаем контейнер `docker run -it -p 8080:8080 search-links`
 
 Переходим по ссылке `http://localhost:8080/search-links-1.0/`
